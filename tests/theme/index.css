@@ -1,0 +1,25 @@
+.light-theme {
+    --primary-color: #f1f1f1;
+    --secondary-color: #73dd5e75;
+}
+.dark-theme {
+    --primary-color: rgb(44, 35, 65);
+    --secondary-color: #20aa0475;
+}
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--primary-color);
+}
+button {
+    border-radius: 20px;
+    outline: none;
+    border: none;
+    font-size: 25px;
+    background-color: var(--secondary-color);
+}
+button:hover {
+    cursor: pointer;
+}
