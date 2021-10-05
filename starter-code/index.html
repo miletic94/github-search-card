@@ -4,71 +4,108 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" type="image/png" sizes="32x32" href="./assets/favicon-32x32.png">
-  <title></title>
+  <link rel='stylesheet' href='index.css' />
+  <title>Github User Search</title>
 </head>
-<body>
+<body class="light-theme">
   <div class="container">
     <div class="header">
-      devfinder
-      <button class="themeToggler">
-          Light
-          <img src="assets/icon-sun.svg" alt="sun - light theme" />
-          Dark
-          <img src="assets/icon-moon.svg" alt="moon - dark theme" />
-        </div>
+      <a id="logo" href="#">devfinder</a>
+      <button type="button" onclick="toggle()" class="themeToggler">
+          <div class="togglerVisual invisible">
+            Light
+            <img id="sun" src="assets/icon-sun.svg" alt="sun - light theme" />
+          </div>
+          <div id="moon" class="togglerVisual">
+            Dark
+            <img src="assets/icon-moon.svg" alt="moon - dark theme" />
+          </div>
       </button>
     </div>
     <div class="searchbar">
       <img src="assets/icon-search.svg" alt="search icon" />
-      <input type="text" placeholder="Search GitHub username..."/>
-      <button type="submit">Search</button>
+      <form onsubmit="fetchData(event)">
+        <input name="username" type="text" placeholder="Search GitHub username..."/>
+        <button type="submit">Search</button>
+      </form>
+      
+      
     </div>
 
-   <main class="card">
-      <img src="/" alt="profile photo"/>
-      <div class="userData">
-        <div class="basicInfo">
-          <div class="githubName">
-            The Octacat
-          </div>
-          <div class="joined">Joined</div>
-          <div class="username">
-            @octacat
-          </div>
-          <div class="userBio">
-            This profile has no bio
-          </div>
-        </div>
-        <div class="accountInfo">
-          <div class="accountInfoSection">
-            <div class="accountInfoTitle">
-              Repos
-            </div>
-            <div class="accountInfoNumber">
-              8
-            </div>
-          </div>
-          <div class="accountInfoSection">
-            <div class="accountInfoTitle">
-              Followers
-            </div>
-            <div class="accountInfoNumber">
-              3938
-            </div>
-          </div>
-          <div >
-            <div class="accountInfoSection">
-              Following
-            </div>
-            <div class="accountInfoNumber">
-              9
-            </div>
-          </div>
-        </div>
+    <main class="card">
+      <div class="userInfo">
+        <img id="avatar" src="https://picsum.photos/117/117" alt="avatar">
+        <h1 id="name">
+          The Octacat
+        </h1>
+        <h3 id="username">
+          @octacat
+        </h3>
+        <h3 id="joined">
+          Joined
+        </h3>
+        <p id="bio">
+          This profile has no bio.
+        </p>
       </div>
-   </main>
 
+      <div class="otherInfo">
+        <div class="accountInfo">
+          <div id="repos" class="accountInfoSection">
+            <h4 class="accountInfoTitle">
+              Repos
+            </h4>
+            <h2 class="accountInfoNumber">
+              8
+            </h2>
+          </div>
+  
+          <div id="followers" class="accountInfoSection">
+            <h4 class="accountInfoTitle">
+              Followers
+            </h4>
+            <h2 class="accountInfoNumber">
+              3938
+            </h2>
+          </div>
+  
+          <div id="following" class="accountInfoSection">
+            <h4 class="accountInfoTitle">
+              Following
+            </h4>
+            <h2 class="accountInfoNumber">
+              9
+            </h2>
+          </div>
+  
+        </div>
 
+        <footer>
+          <a href="#" id="location"> <!-- Google Map -->
+              <img id="location-img" src="assets/icon-location.svg" alt="location">
+              <h3>San Framcisco</h3>
+          </a>
+          <a href="#" id="twitter">
+            <img src="assets/icon-twitter.svg" alt="twitter">
+            <h3>Not Available</h3>
+          </a>
+          <a href="https://github.blog" id="blog">
+            <img src="assets/icon-website.svg" alt="blog" />
+            <h3>https://github.blog</h3>
+          </a>
+          <a href="#" id="organization">
+            <img src="assets/icon-company.svg" alt="company" />
+            <h3>@github</h3>
+          </a>
+        </footer>
+
+      </div>
+
+    </main>
   </div>
+  <script src="toggle.js"></script>
+  <script src="data.js"></script>
 </body>
 </html>
+
+<!-- Fotter >> Locations -->

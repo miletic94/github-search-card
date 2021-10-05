@@ -1,0 +1,394 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap');
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video, article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section  {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+    box-sizing: border-box;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/*================================*/
+
+
+/*===========================
+1. Layout
+=============================*/
+body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.container {
+    width: 50%;
+    min-height: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2.4rem 0;
+}
+.header a {
+    display:block;
+    text-decoration: none;
+    color: inherit;
+}
+.searchbar {
+    display: flex;
+    justify-content: space-around;
+}
+.searchbar input {
+    flex-basis: 80%;
+}
+main {
+    --info-text-container-width: 80%;
+    padding: 4.8rem 2.4rem;
+    margin: 2.5rem 0;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0px 15px 10px #e9e9f3 ;
+}
+.userInfo {
+    display: grid;
+    grid-template-areas: "avatar name joined"
+                         "avatar username ."
+                         "avatar bio bio";
+    /* For --info-text-container-width = 80% next line translates to: 1fr 40% 40% */
+    grid-template-columns: 1fr repeat(2, calc(var(--info-text-container-width)/2)); /*Variable */
+    margin: 2.5rem 1.2rem;
+}
+#bio {
+    margin: 1.2rem 0;
+}
+#joined {
+    text-align: right;
+}
+#avatar {
+    grid-area: avatar;
+    border-radius: 100%;
+    width: 80%;
+    display: inline-block;
+    justify-content: center;
+    align-self: center;
+}
+
+#name {
+    grid-area: name;
+}
+#joined {
+    grid-area: joined
+}
+#username {
+    grid-area: username
+}
+#bio {
+    grid-area: bio;
+}
+.otherInfo {
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+}
+.accountInfo {
+    width:var(--info-text-container-width); /*Variable --info-text-container-width*/
+    display: flex;
+}
+.accountInfoSection {
+    flex-basis: 33.33%;
+}
+footer {
+    width:var(--info-text-container-width); /* Variable --info-text-container-width*/
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 2.4rem 0;
+}
+footer a h3 {
+    display: inline-block;
+}
+
+/*===========================
+2. Theme
+=============================*/
+
+/*===========================
+2.1 Colors
+=============================*/
+.light-theme {
+    /* Button background-color & username color*/
+    --primary-color: #0079FF;
+    /*Card & searchbar background-color & button color */
+    --secondary-color: #fefefe;
+    /* Background-color */
+    --ternary-color: #F6F8FF;
+    /* Name color */
+    --primary-text-color: #2B3442;
+    /* otherInfo color */
+    --secondary-text-color: #4B6A9B;
+    /* themeToggler color */
+    --ternary-text-color: #697C9A;
+
+    --filter-icons: unset;
+    --filter-sun: invert(48%) sepia(2%) saturate(5835%) hue-rotate(189deg) brightness(93%) contrast(89%);
+}
+.dark-theme {
+    /* Button color & username color*/
+    --primary-color: #0079FF;
+    /*Card & searchbar color */
+    --secondary-color: #1E2A47;
+    /* Background-color */
+    --ternary-color: #141D2F;
+
+    --primary-text-color: #ffffff;
+    --secondary-text-color: #ffffff;
+    --ternary-text-color: #ffffff;
+
+    --filter-icons: brightness(5);
+    --filter-sun: unset
+}
+body {
+    background-color: var(--ternary-color);
+}
+button {
+    background-color: var(--primary-color);
+    color: #ffffff;
+}
+#username {
+    color: var(--primary-color);
+}
+.card, .searchbar, .searchbar input {
+    background-color: var(--secondary-color);
+}
+.accountInfo {
+    background-color: var(--ternary-color);
+}
+#logo, h1, h2, .searchbar input {
+    color: var(--primary-text-color);
+}
+h3, h4, p, a {
+    color: var(--secondary-text-color)
+}
+.themeToggler, .themeToggler img {
+    color: var(--ternary-text-color)
+}
+a img {
+    filter: var(--filter-icons)
+}
+#sun {
+    filter: var(--filter-sun)
+}
+
+/*===========================
+2.2 Visibility
+=============================*/
+.invisible {
+    display: none;
+}
+
+/*===========================
+3. Typography
+=============================*/
+
+:root {
+    --font-size: 10px;
+    --font-family: 'Space Mono'
+}
+html, body, button, input {
+    font-size: var(--font-size);
+    font-family: var(--font-family), monospace;
+}
+
+h1, #logo {
+    font-size: 2.6rem;
+    line-height: 3.8rem;
+    font-weight: bold;
+}
+h2 {
+    font-size: 2.2rem;
+    line-height: 3.2rem;
+    font-weight: bold;
+}
+h3, button, input {
+    font-size: 1.6rem;
+    line-height: 2.4rem;
+    font-weight: normal;
+}
+h4 {
+    font-size: 1.3rem;
+    line-height: 2rem;
+    font-weight: normal;
+}
+body, p {
+    font-size: 1.5rem;
+    line-height: 2.5rem;
+    font-weight: normal;
+}
+.header button {
+    text-transform:uppercase;
+}
+
+
+/*===========================
+4. Interactive Elements
+=============================*/
+
+/*===========================
+4.1. Searchbar
+=============================*/
+.searchbar {
+    height: 6.9rem;
+    display: flex;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 1px 7px 10px#cbd6e9;
+}
+/*===========================
+4.2. Form  -   [added subsequently itno CSS]
+=============================*/
+form {
+    display: flex; 
+    width: 90%; 
+    justify-content: space-between;
+}
+
+/*===========================
+4.3. Inputs
+=============================*/
+input {
+    outline:none;
+    border:none;
+    background-color: transparent;
+}
+/*===========================
+4.4. Buttons
+=============================*/
+button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 5rem;
+    border:none;
+    border-radius: 10px;
+}
+button:hover {
+    cursor:pointer;
+    filter: brightness(1.5);
+}
+.header button:hover {
+    filter: brightness(0.75)
+}
+
+
+
+
+/* Acount info */
+.accountInfo {
+    border-radius: 10px;
+    padding: 1.5rem;
+}
+/*----------------*/
+
+/* Theme Toggler */
+.themeToggler {
+    background-color: inherit;
+    border: none;
+    outline: none;
+}
+
+/* =================
+General 
+==================== */
+a {
+    text-decoration: none;
+}
+
+@media screen and (max-width: 1130px) {
+    /*===========================
+    1. Layout
+    =============================*/
+    .container {
+        width:70%;
+    }
+    .userInfo {
+        grid-template-areas: "avatar name"
+                            "avatar username"
+                            "avatar joined"
+                            "bio    bio";
+        grid-template-columns: 1fr var(--info-text-container-width);
+        align-items: center;
+    }
+    #joined {
+        text-align: left;
+    }
+    .accountInfo, footer {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 710px) {
+    /*===========================
+    1. Layout
+    =============================*/
+    .container {
+        width: 93%;
+    }
+    main {
+        padding: 0 1.2rem;
+    }
+    #avatar {
+        width: 70px;
+    }
+    .accountInfoSection {
+        text-align: center;
+    }
+    footer {
+        grid-template-columns: 1fr;
+    }
+}
