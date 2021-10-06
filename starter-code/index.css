@@ -64,19 +64,18 @@ body {
     align-items: center;
 }
 .container {
-    width: 50%;
-    min-height: 40%;
+    max-width: 1140px;
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: space-between
 }
-.header {
+header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 2.4rem 0;
+    margin: 1.2rem 0;
 }
-.header a {
+header a {
     display:block;
     text-decoration: none;
     color: inherit;
@@ -90,44 +89,47 @@ body {
 }
 main {
     --info-text-container-width: 80%;
+    margin: 2.4rem 0;
     padding: 4.8rem 2.4rem;
-    margin: 2.5rem 0;
     display: flex;
     flex-direction: column;
-    box-shadow: 0px 15px 10px #e9e9f3 ;
+    box-shadow: 0px 10px 10px var(--box-shadow);
 }
 .userInfo {
     display: grid;
-    grid-template-areas: "avatar name joined"
-                         "avatar username ."
-                         "avatar bio bio";
+    grid-template-areas: "avatar_url name created_at"
+                         "avatar_url login ."
+                         "avatar_url bio bio";
     /* For --info-text-container-width = 80% next line translates to: 1fr 40% 40% */
     grid-template-columns: 1fr repeat(2, calc(var(--info-text-container-width)/2)); /*Variable */
-    margin: 2.5rem 1.2rem;
+    grid-gap: 10px;
+    margin: 2.5rem 0;
 }
 #bio {
     margin: 1.2rem 0;
 }
-#joined {
+#created_at {
     text-align: right;
+    align-self: center;
 }
-#avatar {
-    grid-area: avatar;
+#avatar_url {
+    grid-area: avatar_url;
     border-radius: 100%;
-    width: 80%;
+    max-width: 110px;
     display: inline-block;
     justify-content: center;
     align-self: center;
+    justify-self: start;
 }
 
 #name {
     grid-area: name;
 }
-#joined {
-    grid-area: joined
+#created_at {
+    grid-area: created_at
 }
-#username {
-    grid-area: username
+#login {
+    grid-area: login
 }
 #bio {
     grid-area: bio;
@@ -148,10 +150,14 @@ footer {
     width:var(--info-text-container-width); /* Variable --info-text-container-width*/
     display: grid;
     grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr;
     margin: 2.4rem 0;
+    align-items: center;
 }
-footer a h3 {
-    display: inline-block;
+footer a {
+    display: grid;
+    grid-template-columns: auto auto;
+    align-items: center;
 }
 
 /*===========================
@@ -162,7 +168,7 @@ footer a h3 {
 2.1 Colors
 =============================*/
 .light-theme {
-    /* Button background-color & username color*/
+    /* Button background-color & login color*/
     --primary-color: #0079FF;
     /*Card & searchbar background-color & button color */
     --secondary-color: #fefefe;
@@ -175,11 +181,13 @@ footer a h3 {
     /* themeToggler color */
     --ternary-text-color: #697C9A;
 
+    --box-shadow: #e9e9f3; 
+
     --filter-icons: unset;
     --filter-sun: invert(48%) sepia(2%) saturate(5835%) hue-rotate(189deg) brightness(93%) contrast(89%);
 }
 .dark-theme {
-    /* Button color & username color*/
+    /* Button color & login color*/
     --primary-color: #0079FF;
     /*Card & searchbar color */
     --secondary-color: #1E2A47;
@@ -189,6 +197,8 @@ footer a h3 {
     --primary-text-color: #ffffff;
     --secondary-text-color: #ffffff;
     --ternary-text-color: #ffffff;
+
+    --box-shadow: #141D2F;
 
     --filter-icons: brightness(5);
     --filter-sun: unset
@@ -200,7 +210,7 @@ button {
     background-color: var(--primary-color);
     color: #ffffff;
 }
-#username {
+#login {
     color: var(--primary-color);
 }
 .card, .searchbar, .searchbar input {
@@ -230,6 +240,9 @@ a img {
 =============================*/
 .invisible {
     display: none;
+}
+.unavailable {
+    opacity: 0.7;
 }
 
 /*===========================
@@ -270,7 +283,7 @@ body, p {
     line-height: 2.5rem;
     font-weight: normal;
 }
-.header button {
+header button {
     text-transform:uppercase;
 }
 
@@ -287,7 +300,7 @@ body, p {
     display: flex;
     align-items: center;
     border-radius: 10px;
-    box-shadow: 1px 7px 10px#cbd6e9;
+    box-shadow: 1px 7px 10px var(--box-shadow);
 }
 /*===========================
 4.2. Form  -   [added subsequently itno CSS]
@@ -306,6 +319,9 @@ input {
     border:none;
     background-color: transparent;
 }
+input:active, input:focus{
+    background-color: transparent;
+}
 /*===========================
 4.4. Buttons
 =============================*/
@@ -321,7 +337,7 @@ button:hover {
     cursor:pointer;
     filter: brightness(1.5);
 }
-.header button:hover {
+header button:hover {
     filter: brightness(0.75)
 }
 
@@ -357,14 +373,14 @@ a {
         width:70%;
     }
     .userInfo {
-        grid-template-areas: "avatar name"
-                            "avatar username"
-                            "avatar joined"
+        grid-template-areas: "avatar_url name"
+                            "avatar_url login"
+                            "avatar_url created_at"
                             "bio    bio";
         grid-template-columns: 1fr var(--info-text-container-width);
         align-items: center;
     }
-    #joined {
+    #created_at {
         text-align: left;
     }
     .accountInfo, footer {
@@ -372,7 +388,7 @@ a {
     }
 }
 
-@media screen and (max-width: 710px) {
+@media screen and (max-width: 840px) {
     /*===========================
     1. Layout
     =============================*/
@@ -382,13 +398,25 @@ a {
     main {
         padding: 0 1.2rem;
     }
-    #avatar {
-        width: 70px;
+    #avatar_url {
+        width: 90px;
     }
     .accountInfoSection {
         text-align: center;
     }
     footer {
         grid-template-columns: 1fr;
+    }
+    footer a{
+        display: flex;
+    }
+    footer a > * {
+        margin: 3px
+    }
+}
+
+@media screen and (max-height: 700px) {
+    body {
+        align-items: flex-start;
     }
 }
