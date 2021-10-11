@@ -1,5 +1,6 @@
 const fetchData = (event) => {
     event.preventDefault()
+    document.querySelector("#input-error").style.visibility = "hidden";
     let username = event.target.elements["username"].value !== "" ?
                    event.target.elements["username"].value  : 
                    "octacat"
@@ -15,6 +16,16 @@ const fetchData = (event) => {
 const handleError = (response) => {
     if(!response.ok) {
         initialRender()
+        let errorDOMElement = document.querySelector("#input-error")
+        errorDOMElement.style.visibility = "visible";
+        if(response.status === 404) {
+            errorDOMElement.innerText = "No results."
+            throw "404 Result not found"
+        }
+        if(response.status === 403) {
+            errorDOMElement.innerText = "Server error. Try again later"
+            throw "403 Server error. Try and fix that. LOL"
+        }
         throw Error(response.status)
     } 
     return response
